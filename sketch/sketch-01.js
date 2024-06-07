@@ -30,7 +30,7 @@ const sketch = () => {
     const ix = width * 0.17;
     const iy = height * 0.17;
 
-    const off = width * 0.02;
+    const off = width * 0.03;
 
     let x, y;
 
