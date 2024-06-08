@@ -3,7 +3,7 @@ const math = require('canvas-sketch-util/math');
 const random = require('canvas-sketch-util/random');
 
 const settings = {
-  dimensions: [ 2048, 2048 ]
+  dimensions: [2048, 2048]
 };
 
 const degToRad = (deg) => {
@@ -20,6 +20,7 @@ const sketch = () => {
     context.fillStyle = 'black';
     context.fillRect(0, 0, width, height);
     context.fillStyle = 'lavender';
+    context.strokeStyle = 'lavender';
 
     const cx = width * 0.5;
     const cy = height * 0.5;
@@ -31,7 +32,7 @@ const sketch = () => {
     // we declared x and y with let so we can modify the values in the loop
     let x, y;
 
-    const num = 12;
+    const num = 40;
     const radius = width * 0.3;
 
     for (let i = 0; i < num; i++) {
@@ -45,13 +46,25 @@ const sketch = () => {
       context.save();
       context.translate(x, y);
       context.rotate(-angle);
-// scale takes 2 parameters and the default value is 1
-// a random value from 1 - 3. math.random's default starts from 0
-      context.scale(random.range(1, 3), 1)
+      // scale takes 2 parameters and the default value is 1
+      // a random value from 1 - 3. math.random's default starts from 0
+      context.scale(random.range(0.1, 2), random.range(0.2, 0.5))
 
       context.beginPath();
-      context.rect(-w * 0.5, -h * 0.5, w, h);
+      context.rect(-w * 0.5, random.range(0, -h * 0.5), w, h);
       context.fill();
+      context.restore();
+
+      context.save();
+      context.translate(cx, cy);
+      context.rotate(-angle);
+
+      context.lineWidth = random.range(5, 20);
+
+      context.beginPath();
+      context.arc(0, 0, radius * random.range(0.7, 1.3), slice * random.range(1, -8), slice * random.range(1, 5));
+      context.stroke();
+
       context.restore();
     }
   };
