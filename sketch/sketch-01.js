@@ -17,6 +17,7 @@ const settings = {
 // ix = initial x
 // iy = initial y
 //off is like the padding between the outer and inner shapes
+//gap is the margin between the shapes
 
 const sketch = () => {
   return ({ context, width, height }) => {

@@ -6,13 +6,13 @@ const settings = {
   dimensions: [2048, 2048]
 };
 
-const degToRad = (deg) => {
-  return (deg / 180) * Math.PI;
-};
+// const degToRad = (deg) => {
+//   return (deg / 180) * Math.PI;
+// };
 
-const randomRange = (min, max) => {
-  return Math.random() * (max - min) + min;
-};
+// const randomRange = (min, max) => {
+//   return Math.random() * (max - min) + min;
+// };
 
 
 const sketch = () => {
