@@ -3,7 +3,7 @@ const random = require('canvas-sketch-util/random');
 
 // to animate it needs to be specified in the settings
 const settings = {
-  dimensions: [ 1080, 1080 ],
+  dimensions: [1080, 1080],
   animate: true
 };
 
@@ -33,9 +33,13 @@ const sketch = ({ context, width, height }) => {
 
     for (let i = 0; i < agents.length; i++) {
       const agent = agents[i];
-      
+
       for (let j = i + 1; j < agents.length; j++) {
         const other = agents[j];
+
+        const dist = agent.pos.getDistance(other.pos);
+
+        if (dist > 200) continue;
 
         context.beginPath();
         context.moveTo(agent.pos.x, agent.pos.y);
@@ -60,6 +64,12 @@ class Vector {
     this.x = x;
     this.y = y;
     this.radius = radius;
+  }
+
+  getDistance(v) {
+    const dx = this.x - v.x;
+    const dy = this.y - v.y;
+    return Math.sqrt(dx * dx + dy * dy);
   }
 }
 
