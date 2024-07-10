@@ -1,5 +1,6 @@
 const canvasSketch = require('canvas-sketch');
 const random = require('canvas-sketch-util/random');
+const math = require('canvas-sketch-util/math');
 
 // to animate it needs to be specified in the settings
 const settings = {
@@ -40,6 +41,10 @@ const sketch = ({ context, width, height }) => {
         const dist = agent.pos.getDistance(other.pos);
 
         if (dist > 200) continue;
+
+        // set the lineWidth based on the distance
+        // from a range betwenn 0 & 200. when it's 0 it should be 8, if 200 then 1
+        context.lineWidth = math.mapRange(dist, 0, 200, 8, 1);
 
         context.beginPath();
         context.moveTo(agent.pos.x, agent.pos.y);
